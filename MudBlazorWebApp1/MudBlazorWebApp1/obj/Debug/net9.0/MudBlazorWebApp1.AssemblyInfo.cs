@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MudBlazorWebApp1")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d93a87afa346c1454c60c6e76e5a18dd551ef8b1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cf22f4ba535b0052762ff86a111d26b29ef687b3")]
 [assembly: System.Reflection.AssemblyProductAttribute("MudBlazorWebApp1")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MudBlazorWebApp1")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

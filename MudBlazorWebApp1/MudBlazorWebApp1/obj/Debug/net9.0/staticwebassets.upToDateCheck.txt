@@ -1,0 +1,2 @@
+C:\Repo\Pruebas\StateMachine-front\MudBlazorWebApp1\MudBlazorWebApp1\wwwroot\favicon.ico
+wwwroot\favicon.ico

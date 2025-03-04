@@ -1,2 +1,3 @@
 C:\Users\bz13y\source\repos\MudBlazorWebApp1\MudBlazorWebApp1\MudBlazorWebApp1.Client\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\bz13y\Dev\Projects\MudBlazorWebApp1\MudBlazorWebApp1\MudBlazorWebApp1.Client\obj\Debug\net9.0\staticwebassets.build.json
+C:\Repo\Pruebas\StateMachine-front\MudBlazorWebApp1\MudBlazorWebApp1.Client\obj\Debug\net9.0\staticwebassets.build.json

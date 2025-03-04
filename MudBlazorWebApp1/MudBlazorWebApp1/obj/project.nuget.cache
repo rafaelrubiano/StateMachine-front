@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hOjnVc3dIrA=",
+  "dgSpecHash": "HdFtPj5j5bM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\bz13y\\Dev\\Projects\\MudBlazorWebApp1\\MudBlazorWebApp1\\MudBlazorWebApp1\\MudBlazorWebApp1.csproj",
+  "projectFilePath": "C:\\Users\\bz13y\\Downloads\\StateMachine-API\\StateMachine-front\\MudBlazorWebApp1\\MudBlazorWebApp1\\MudBlazorWebApp1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bz13y\\.nuget\\packages\\microsoft.aspnetcore.authorization\\9.0.2\\microsoft.aspnetcore.authorization.9.0.2.nupkg.sha512",
     "C:\\Users\\bz13y\\.nuget\\packages\\microsoft.aspnetcore.components\\9.0.2\\microsoft.aspnetcore.components.9.0.2.nupkg.sha512",

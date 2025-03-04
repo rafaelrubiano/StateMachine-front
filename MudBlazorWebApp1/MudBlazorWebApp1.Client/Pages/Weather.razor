@@ -1,89 +1,98 @@
-﻿@page "/solicitudes"
+﻿@page "/weather"
 @using System.Net.Http.Json
 @using MudBlazor
+@using MudBlazor.Utilities
 @using MudBlazorWebApp1.Client.Models.Dto
 
 @inject HttpClient Http
 
 <MudContainer>
-    <MudDataGrid Items="@solicitudes"
-                 ReadOnly="@_isReadOnly"
-                 EditMode="@DataGridEditMode.Cell"
-                 RowClick="@RowClickEventCallback">
-        <Columns>
-            <HierarchyColumn T="SolicitudDto" />
-            <PropertyColumn Property="x => x.IdSolicitud" Title="ID" />
-            <PropertyColumn Property="x => x.UsuarioRed" Title="Usuario Red" />
-            <PropertyColumn Property="x => x.UsuarioNombre" Title="Nombre Usuario" />
-            <PropertyColumn Property="x => x.Creado" Title="Fecha Creación" />
-            <PropertyColumn Property="x => x.IdEstado" Title="Estado ID" />
-        </Columns>
+	<MudDataGrid Items="@solicitudes"
+	ReadOnly="@_isReadOnly"
+	EditMode="@DataGridEditMode.Cell"
+	RowClick="@RowClickEventCallback">
+		<Columns>
+			<HierarchyColumn T="SolicitudDto" />
+			<PropertyColumn Property="x => x.IdSolicitud" Title="ID" />
+			<PropertyColumn Property="x => x.UsuarioRed" Title="Usuario Red" />
+			<PropertyColumn Property="x => x.UsuarioNombre" Title="Nombre Usuario" />
+			<PropertyColumn Property="x => x.Creado" Title="Fecha Creación" />
+			<PropertyColumn Property="x => x.IdEstado" Title="Estado ID" />
+		</Columns>
 
-        <ChildRowContent>
-            <MudCard>
-                <MudCardHeader>
-                    <CardHeaderContent>
-                        <MudText Typo="Typo.h6">Estados de @context.Item.UsuarioNombre</MudText>
-                    </CardHeaderContent>
-                </MudCardHeader>
-                <MudCardContent>
-                    <MudTimeline>
-                        @foreach (var estado in context.Item.Estados)
-                        {
-                            <MudTimelineItem Icon="@estado.Icono" Color="@estado.Color">
-                                <ChildContent>
-                                    <MudText Typo="Typo.body1">@estado.Nombre</MudText>
-                                    <MudText Typo="Typo.caption">@estado.Fecha</MudText>
-                                </ChildContent>
-                            </MudTimelineItem>
-                        }
-                    </MudTimeline>
-                </MudCardContent>
-            </MudCard>
-        </ChildRowContent>
+		<ChildRowContent>
+			<MudCard>
+				<MudCardHeader>
+					<CardHeaderContent>
+						<MudText Typo="Typo.h6">Estados de @context.Item.UsuarioNombre</MudText>
+					</CardHeaderContent>
+				</MudCardHeader>
+				<MudCardContent>
+					<MudTimeline>
+						@foreach (var estado in context.Item.Estados)
+						{
+							<MudTimelineItem Icon="" Style="@($"color: {estado.Color};")">
+								<ChildContent>
+									<MudText Typo="Typo.body1">@estado.Nombre</MudText>
+									<MudText Typo="Typo.caption">@estado.Creado</MudText>
+								</ChildContent>
+							</MudTimelineItem>
 
-        <PagerContent>
-            <MudDataGridPager T="SolicitudDto" />
-        </PagerContent>
-    </MudDataGrid>
+						}
+					</MudTimeline>
+				</MudCardContent>
+			</MudCard>
+		</ChildRowContent>
 
-    <div class="d-flex flex-wrap mt-4">
-        <MudSwitch T="bool" @bind-Value="_isReadOnly" Color="@Color.Primary">Read Only</MudSwitch>
-    </div>
+		<PagerContent>
+			<MudDataGridPager T="SolicitudDto" />
+		</PagerContent>
+	</MudDataGrid>
+
+	<div class="d-flex flex-wrap mt-4">
+		<MudSwitch T="bool" @bind-Value="_isReadOnly" Color="@Color.Primary">Read Only</MudSwitch>
+	</div>
 </MudContainer>
 
 @code {
-    private List<SolicitudDto> solicitudes = new();
-    private bool _isReadOnly = true;
+	private List<SolicitudDto> solicitudes = new();
+	private bool _isReadOnly = true;
 
-    // Se crea la propiedad EventCallback
-    private EventCallback<DataGridRowClickEventArgs<SolicitudDto>> RowClickEventCallback 
-        => EventCallback.Factory.Create<DataGridRowClickEventArgs<SolicitudDto>>(this, OnRowClick);
+	// Se crea la propiedad EventCallback
+	private EventCallback<DataGridRowClickEventArgs<SolicitudDto>> RowClickEventCallback
+		=> EventCallback.Factory.Create<DataGridRowClickEventArgs<SolicitudDto>>(this, OnRowClick);
 
-    protected override async Task OnInitializedAsync()
-    {
-        try
-        {
-            solicitudes = await Http.GetFromJsonAsync<List<SolicitudDto>>("http://localhost:5085/api/solicitudes") ?? new();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error al obtener solicitudes: {ex.Message}");
-        }
-    }
+	protected override async Task OnInitializedAsync()
+	{
+	 
 
-    private async Task OnRowClick(DataGridRowClickEventArgs<SolicitudDto> args)
-    {
-        try
-        {
-            var solicitud = args.Item;
-            solicitud.Estados = await Http.GetFromJsonAsync<List<EstadoDto>>($"http://localhost:5085/api/solicitudes/{solicitud.IdSolicitud}/estados") ?? new();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error al obtener estados: {ex.Message}");
-        }
-    }
+		try
+		{
+			solicitudes = await Http.GetFromJsonAsync<List<SolicitudDto>>("http://localhost:5085/api/Solicitudes") ?? new();
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine($"Error al obtener solicitudes: {ex.Message}");
+		}
+	}
+
+	private async Task OnRowClick(DataGridRowClickEventArgs<SolicitudDto> args)
+	{
+		try
+		{
+			var OnclickItemSolicitud = args.Item;
+			var Solicitud = await Http.GetFromJsonAsync<SolicitudDto>($"http://localhost:5085/api/Solicitudes/IdSolicitud?IdSolicitud={OnclickItemSolicitud.IdSolicitud.ToString()}") ?? new();
+			var estado = await Http.GetFromJsonAsync<EstadoDto>($"http://localhost:5085/api/Estados/IdEstado?IdEstado={Solicitud.IdEstado}") ?? new();
+
+
+			
+
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine($"Error al obtener estados: {ex.Message}");
+		}
+	}
 }
 
 }
